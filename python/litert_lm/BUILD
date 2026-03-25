@@ -185,8 +185,8 @@ py_wheel(
         "//conditions:default": "litert-lm",
     }),
     platform = select({
-        "//build_config:linux_x86_64": "manylinux_2_27_x86_64",
-        "//build_config:linux_arm64": "manylinux_2_27_aarch64",
+        "//build_config:linux_x86_64": "manylinux_2_35_x86_64",
+        "//build_config:linux_arm64": "manylinux_2_38_aarch64",
         "@platforms//os:macos": "macosx_12_0_arm64",
         "@platforms//os:windows": "win_amd64",
         "//conditions:default": "any",

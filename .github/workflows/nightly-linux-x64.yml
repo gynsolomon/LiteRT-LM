@@ -11,7 +11,7 @@ on:
 jobs:
   build-linux-wheel:
     name: "Build Python Wheel ${{ matrix.python-version }}"
-    runs-on: LiteRT_Linux_x64
+    runs-on: ubuntu-22.04-8core
     strategy:
       matrix:
         python-version: ["3.10", "3.11", "3.12", "3.13"]
@@ -22,6 +22,9 @@ jobs:
           lfs: true
 
       - name: Build Python Wheel
+        # Building with --define=xnn_enable_avxvnniint8=false because the Clang
+        # version on Ubuntu 22.04 does not support -mavxvnniint8. Ubuntu 22.04
+        # is used to maintain compatibility with Google Colab environments.
         run: |
           PYTHON_VERSION=${{ matrix.python-version }}
           DATE=$(date +'%Y%m%d')
@@ -30,6 +33,7 @@ jobs:
             --@rules_python//python/config_settings:python_version=${PYTHON_VERSION} \
             --define=PYPI_NIGHTLY=1 \
             --define=PYPI_NIGHTLY_DATE=${DATE} \
+            --define=xnn_enable_avxvnniint8=false \
             -c opt //python/litert_lm:litert_lm_wheel
 
       - name: Install uv
@@ -63,6 +67,7 @@ jobs:
           bazel build \
             --define=PYPI_NIGHTLY=1 \
             --define=PYPI_NIGHTLY_DATE=${DATE} \
+            --define=xnn_enable_avxvnniint8=false \
             -c opt //python/litert_lm_cli:litert_lm_cli_wheel
 
       - name: Test CLI Python Wheel
