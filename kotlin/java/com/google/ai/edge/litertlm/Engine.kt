@@ -80,9 +80,9 @@ class Engine(val engineConfig: EngineConfig) : AutoCloseable {
           engineConfig.cacheDir ?: "",
           @OptIn(ExperimentalApi::class) ExperimentalFlags.enableBenchmark,
           @OptIn(ExperimentalApi::class) ExperimentalFlags.enableSpeculativeDecoding,
-          (engineConfig.backend as? Backend.NPU)?.getNativeLibraryDir() ?: "",
-          (engineConfig.visionBackend as? Backend.NPU)?.getNativeLibraryDir() ?: "",
-          (engineConfig.audioBackend as? Backend.NPU)?.getNativeLibraryDir() ?: "",
+          (engineConfig.backend as? Backend.NPU)?.nativeLibraryDir ?: "",
+          (engineConfig.visionBackend as? Backend.NPU)?.nativeLibraryDir ?: "",
+          (engineConfig.audioBackend as? Backend.NPU)?.nativeLibraryDir ?: "",
           mainBackendNumThreads,
           audioBackendNumThreads,
         )

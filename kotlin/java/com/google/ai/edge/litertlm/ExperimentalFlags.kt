@@ -69,13 +69,6 @@ object ExperimentalFlags {
    * affect any existing [Conversation] instances.
    */
   var convertCamelToSnakeCaseInToolDescription: Boolean = true
-
-  /**
-   * The directory contains the NPU libraries for [Backend.NPU].
-   *
-   * @deprecated Use [Backend.NPU.nativeLibraryDir] instead.
-   */
-  @Deprecated("Use Backend.NPU(nativeLibraryDir = ...) instead.") var npuLibrariesDir: String = ""
 }
 
 // Mark this annotation itself as requiring opt-in

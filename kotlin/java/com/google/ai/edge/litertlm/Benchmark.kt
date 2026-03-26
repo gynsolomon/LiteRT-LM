@@ -68,7 +68,7 @@ fun benchmark(
       prefillTokens,
       decodeTokens,
       cacheDir ?: "",
-      (backend as? Backend.NPU)?.getNativeLibraryDir() ?: "",
+      (backend as? Backend.NPU)?.nativeLibraryDir ?: "",
     )
 
   try {
